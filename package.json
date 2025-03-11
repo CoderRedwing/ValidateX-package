@@ -1,0 +1,54 @@
+{
+  "name": "validatex-0.1", 
+  "version": "1.0.0",
+  "description": "A powerful validation library for JavaScript and TypeScript",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --config jest.config.js",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint . --ext .ts",
+    "prepublishOnly": "npm run build",
+    "size": "size-limit"
+  },
+  "sideEffects": false,
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "26 KB"
+    }
+  ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "validation",
+    "email",
+    "password",
+    "phone",
+    "url",
+    "username",
+    "form-validation",
+    "typescript"
+  ],
+  "author": "Ajitesh",
+  "license": "MIT",
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^11.2.0",
+    "@types/jest": "^29.5.14",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.6",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "libphonenumber-js": "^1.12.5",
+    "size-limit": "^11.2.0"
+  }
+}
