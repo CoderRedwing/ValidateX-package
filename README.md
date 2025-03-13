@@ -1,20 +1,20 @@
-# **ValidateX**  
+# ValidateX
 
-A lightweight and flexible validation library for **JavaScript** and **TypeScript**.  
+A lightweight and flexible validation library for JavaScript and TypeScript.
 
-## **Features**  
+## Features
 
-- 📧 **Email Validation** – Detects typos and suggests corrections  
-- 🔐 **Strong Password Enforcement** – Ensures security standards  
-- 👤 **Username Validation** – Enforces proper character usage  
-- 📞 **Phone Number Validation** – Supports international formats  
-- 🌐 **URL Validation** – Checks for correct structure  
-- 💳 **Credit Card Validation** – Uses the Luhn algorithm  
-- ⚡ **Custom Validation Rules** – Extendable API for custom needs  
+- Email Validation – Detects typos and suggests corrections
+- Strong Password Enforcement – Ensures security standards
+- Username Validation – Enforces proper character usage
+- Phone Number Validation – Supports international formats
+- URL Validation – Checks for correct structure
+- Credit Card Validation – Uses the Luhn algorithm
+- Custom Validation Rules – Extendable API for custom needs
 
 ---
 
-## **Installation**  
+## Installation
 
 ```sh
 npm install validatex-0.1
@@ -22,83 +22,135 @@ npm install validatex-0.1
 
 ---
 
-## **Usage**  
+## Usage
 
-### **CommonJS (JavaScript)**  
-```js
-const ValidateX = require("validatex-0.1");
+### Importing ValidateX
 
-console.log(ValidateX.email("test@example.com")); 
-// { valid: true, reason: null, suggestion: null }
-```
+For ES Modules (JavaScript/TypeScript):
 
-### **ES Modules (JavaScript/TypeScript)**  
 ```ts
 import ValidateX from "validatex-0.1";
+```
 
-console.log(ValidateX.email("test@example.com")); 
-// { valid: true, reason: null, suggestion: null }
+For CommonJS:
+
+```js
+const ValidateX = require("validatex-0.1");
 ```
 
 ---
 
-## **API Reference**  
+## API Reference
 
-### `ValidateX.email(email: string): ValidationResult`  
-📧 **Validates an email address**, detecting typos and suggesting corrections.  
+### Email Validation
+
 ```js
-ValidateX.email("test@@gmail.com"); 
-// { valid: false, reason: "Invalid email format", suggestion: "Did you mean test@gmail.com?" }
+import ValidateX from "validatex-0.1";
+
+// Validates an email address
+function checkEmail(email) {
+  const result = ValidateX.email(email);
+  console.log(result);
+}
+
+checkEmail("test@@gmail.com");
 ```
 
-### `ValidateX.password(password: string): ValidationResult`  
-🔐 **Ensures password meets security standards** (length, uppercase, number, special character).  
+### Password Validation
+
 ```js
-ValidateX.password("weakpass"); 
-// { valid: false, reason: "Password must be at least 8 characters with uppercase, lowercase, number, and special character." }
+import ValidateX from "validatex-0.1";
+
+// Ensures password meets security standards
+// A strong password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character.
+function checkPassword(password) {
+  const result = ValidateX.password(password);
+  console.log(result);
+}
+
+checkPassword("weakpass");
 ```
 
-### `ValidateX.username(username: string): ValidationResult`  
-👤 **Checks if a username follows valid character constraints**.  
+### Username Validation
+
 ```js
-ValidateX.username("user__name"); 
-// { valid: false, reason: "Username must start with a letter, be 3-16 characters long, and contain only letters, numbers, or single underscores." }
+import ValidateX from "validatex-0.1";
+
+// Checks if a username follows valid character constraints
+// A valid username must start with a letter, be 3-16 characters long, and contain only letters, numbers, or single underscores.
+function checkUsername(username) {
+  const result = ValidateX.username(username);
+  console.log(result);
+}
+
+checkUsername("user__name");
 ```
 
-### `ValidateX.phone(number: string): ValidationResult`  
-📞 **Validates an international phone number**.  
+### Phone Number Validation
+
 ```js
-ValidateX.phone("12345"); 
-// { valid: false, reason: "Invalid phone number format. Use correct country code if needed." }
+import ValidateX from "validatex-0.1";
+
+// Validates an international phone number
+// A valid phone number should include the correct country code if applicable.
+function checkPhone(phone) {
+  const result = ValidateX.phone(phone);
+  console.log(result);
+}
+
+checkPhone("12345");
 ```
 
-### `ValidateX.url(link: string): ValidationResult`  
-🌐 **Ensures a properly formatted URL**.  
+### URL Validation
+
 ```js
-ValidateX.url("example"); 
-// { valid: false, reason: "Invalid URL format. Ensure correct http/https structure." }
+import ValidateX from "validatex-0.1";
+
+// Ensures a properly formatted URL
+// A valid URL should start with http:// or https://
+function checkURL(url) {
+  const result = ValidateX.url(url);
+  console.log(result);
+}
+
+checkURL("example");
 ```
 
-### `ValidateX.creditCard(cardNumber: string): ValidationResult`  
-💳 **Validates a credit card number using the Luhn algorithm**.  
+### Credit Card Validation
+
 ```js
-ValidateX.creditCard("1234567812345678"); 
-// { valid: false, reason: "Invalid credit card number." }
+import ValidateX from "validatex-0.1";
+
+// Validates a credit card number using the Luhn algorithm
+function checkCreditCard(cardNumber) {
+  const result = ValidateX.creditCard(cardNumber);
+  console.log(result);
+}
+
+checkCreditCard("1234567812345678");
 ```
 
-### `ValidateX.addRule(name: string, func: (value: any) => ValidationResult): void`  
-⚡ **Create custom validation rules dynamically**.  
+### Custom Validation Rules
+
 ```js
+import ValidateX from "validatex-0.1";
+
+// Define a custom validation rule to check if a number is even
 ValidateX.addRule("isEven", (num) => ({
   valid: num % 2 === 0,
   reason: num % 2 !== 0 ? "Number is not even." : null,
 }));
 
-console.log(ValidateX.isEven(5)); 
-// { valid: false, reason: "Number is not even." }
+function checkEvenNumber(number) {
+  const result = ValidateX.isEven(number);
+  console.log(result);
+}
+
+checkEvenNumber(5);
 ```
 
 ---
 
-## **License**  
-© 2025 **Ajitesh** 
+## License
+
+© 2025 Ajitesh

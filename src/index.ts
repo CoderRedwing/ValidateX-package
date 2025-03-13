@@ -21,14 +21,27 @@ export const validate: ValidateX = {
   email: (email: string): ValidationResult => {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const consecutiveDots = /\.{2,}/.test(email);
-    const valid = regex.test(email) && !consecutiveDots;
+    const atSymbolValid = email.indexOf("@") > 0 && email.lastIndexOf("@") === email.indexOf("@");
+    const parts = email.split("@");
+    const dotsAroundAt = parts.length === 2 && (parts[0].endsWith(".") || parts[1].startsWith("."));
+    const domainParts = parts.length === 2 ? parts[1].split(".") : [];
+    const hasDuplicateTLD = domainParts.length >= 2 && domainParts[domainParts.length - 1] === domainParts[domainParts.length - 2];
+
+    const valid = regex.test(email) && !consecutiveDots && atSymbolValid && !dotsAroundAt && !hasDuplicateTLD;
 
     return {
       valid,
-      reason: valid ? null : "Invalid email format or contains consecutive dots.",
-      suggestion: valid ? null : email.includes("@") ? `${email}.com` : `Did you mean ${email}@example.com?`,
+      reason: valid ? null : "Invalid email format: check '@' position, consecutive dots, or incorrect domain.",
+      suggestion: valid 
+        ? null 
+        : !email.includes("@") 
+          ? `Did you mean ${email}@example.com?` 
+          : email.endsWith(".com.com") 
+            ? email.slice(0, -4)  
+            : `${email}.com`, 
     };
   },
+
 
   password: (password: string): ValidationResult => {
     const lengthCheck = password.length >= 8;

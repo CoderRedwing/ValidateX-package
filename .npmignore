@@ -1,0 +1,14 @@
+# Ignore build artifacts
+dist/stats.json
+*.map
+
+# Ignore source files (if only dist/ should be published)
+src
+tests
+jest.config.js
+tsconfig.json
+.eslintrc.js
+.prettierrc
+
+# Ignore documentation & config files
+docs
