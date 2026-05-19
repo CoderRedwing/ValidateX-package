@@ -1,12 +1,12 @@
 {
   "name": "validatex-0.1",
-  "version": "1.0.4",
-  "description": "A powerful validation library for JavaScript and TypeScript",
-  "main": "dist/index.js",
+  "version": "1.1.0",
+  "description": "A lightweight and flexible validation library for JavaScript and TypeScript. Supports email (with typo suggestions), password, username, phone, URL, credit card (with card type detection), date, postal code, IP address, and batch validation.",
+  "main": "dist/cjs/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsc -p tsconfig.cjs.json",
     "test": "jest --config jest.config.js",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -18,7 +18,7 @@
   "size-limit": [
     {
       "path": "dist/index.js",
-      "limit": "26 KB"
+      "limit": "30 KB"
     }
   ],
   "files": [
@@ -33,10 +33,26 @@
     "url",
     "username",
     "form-validation",
-    "typescript"
+    "typescript",
+    "credit-card",
+    "luhn",
+    "ip-address",
+    "postal-code",
+    "date-validation",
+    "batch-validation",
+    "nodejs",
+    "javascript"
   ],
-  "author": "Ajitesh",
+  "author": "Ajitesh Mishra",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CoderRedwing/ValidateX-package.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CoderRedwing/ValidateX-package/issues"
+  },
+  "homepage": "https://github.com/CoderRedwing/ValidateX-package#readme",
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.2.0",
     "@types/jest": "^29.5.14",
@@ -50,5 +66,13 @@
   "dependencies": {
     "libphonenumber-js": "^1.12.5",
     "size-limit": "^11.2.0"
+  },
+  "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/index.d.ts"
+    }
   }
 }
